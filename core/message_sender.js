@@ -1,5 +1,8 @@
 const request = require("request");
+const pprint = require("pretty-console.log");
 
+
+pprint.enable();
 
 exports.simple_message = (recipient_id, text) => {
     request(
