@@ -5,7 +5,7 @@ var body_parser = require("body-parser");
 var app = express();
 
 app.set("port", (process.env.PORT));
-app.use(bodyParser.json());
+app.use(body_parser.json());
 
 app.get("/", (request, response) => {
     response.send("Just a Facebook messeger bot webhook, nothing here yet :D.");
