@@ -1,6 +1,7 @@
 const body_parser = require("body-parser");
 const express = require("express");
 
+const CommandParser = require("./core/command_parser");
 const MessageIterator = require("./core/message_iterator");
 const MessageSender = require("./core/message_sender");
 
@@ -23,10 +24,14 @@ app.get("/webhook", (request, response) => {
 
 app.post('/webhook', (request, response) => {
     var iterator = new MessageIterator.Iterator(request.body.entry[0].messaging);
+    var promise = {};
 
     iterator.each_message((sender, message) => {
-        if (message && message.text)
-            MessageSender.simple_message(sender.id, message.text);
+        if (message && message.text) {
+            promise = new CommandParser.CommandPromise(message.text);
+            promise.resolve();
+            // MessageSender.simple_message(sender.id, message.text);
+        }
     });
 
     response.sendStatus(200);
