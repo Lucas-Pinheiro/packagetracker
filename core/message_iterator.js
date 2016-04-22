@@ -1,4 +1,6 @@
-exports.Iterator = (messages) => {
+exports.Iterator = Iterator;
+
+function Iterator(messages) {
     var self = this;
 
     self._messages = messages;
@@ -12,4 +14,4 @@ exports.Iterator = (messages) => {
             );
         }
     };
-};
+}
