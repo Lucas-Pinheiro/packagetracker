@@ -1,5 +1,4 @@
 const body_parser = require("body-parser");
-const json_print = require("printable-json");
 const express = require("express");
 
 const MessageSender = require("./core/message_sender");
@@ -23,19 +22,16 @@ app.get("/webhook", (request, response) => {
 
 app.post('/webhook', (request, response) => {
     var messaging_events = request.body.entry[0].messaging;
-    console.log(json_print.toString(request.body));
 
     for (var i = 0; i < messaging_events.length; i++) {
         var event = messaging_events[i];
         var sender_id = event.sender.id;
         var text = "";
 
-        console.log(json_print.toString(event));
-
-        if (event.message && event.message.text)
+        if (event.message && event.message.text) {
             text = event.message.text;
-
-        MessageSender.simple_message(sender_id, text);
+            MessageSender.simple_message(sender_id, text);
+        }
     }
 
     response.sendStatus(200);
