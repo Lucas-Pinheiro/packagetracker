@@ -30,6 +30,8 @@ app.post('/webhook', (request, response) => {
         var sender_id = event.sender.id;
         var text = "";
 
+        console.log(json_print.toString(event));
+
         if (event.message && event.message.text)
             text = event.message.text;
 
