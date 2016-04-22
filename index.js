@@ -16,6 +16,22 @@ app.get("/webhook", (request, response) => {
     response.send("Error, wrong validation token");
 });
 
+app.post('/webhook', (request, response) => {
+    messaging_events = request.body.entry[0].messaging;
+
+    for (var i = 0; i < messaging_events.length; i++) {
+        event = request.body.entry[0].messaging[i];
+        sender = event.sender.id;
+        if (event.message && event.message.text)
+            text = event.message.text;
+
+            console.log("=================================================");
+            console.log(text);
+    }
+
+    response.sendStatus(200);
+});
+
 app.listen(app.get("port"), () => {
     console.log("Smough is now running at port: ", app.get("port"));
 });
