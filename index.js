@@ -6,7 +6,7 @@ var app = express();
 app.set("port", (process.env.PORT));
 
 app.get("/", (request, response) => {
-    response.send(process.env.SECRET);
+    response.send("Just a Facebook messager bot webhook, nothing here yet :D.");
 });
 
 app.get("/webhook", (request, response) => {
