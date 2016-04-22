@@ -1,6 +1,7 @@
 const body_parser = require("body-parser");
 const express = require("express");
 
+const MessageIterator = require("./core/message_iterator");
 const MessageSender = require("./core/message_sender");
 
 
@@ -21,18 +22,12 @@ app.get("/webhook", (request, response) => {
 });
 
 app.post('/webhook', (request, response) => {
-    var messaging_events = request.body.entry[0].messaging;
+    var iterator = new MessageIterator.Iterator(request.body.entry[0].messaging);
 
-    for (var i = 0; i < messaging_events.length; i++) {
-        var event = messaging_events[i];
-        var sender_id = event.sender.id;
-        var text = "";
-
-        if (event.message && event.message.text) {
-            text = event.message.text;
-            MessageSender.simple_message(sender_id, text);
-        }
-    }
+    iterator.each_message((sender, message) => {
+        if (message && message.text)
+            MessageSender.simple_message(sender.id, message.text);
+    });
 
     response.sendStatus(200);
 });
