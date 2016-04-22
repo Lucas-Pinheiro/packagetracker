@@ -116,11 +116,11 @@ Command.ARGS_REGEX = {
     "package": /^[0-9A-Z]{13}$/
 };
 
-function CommandError(error_key) {
+function CommandError(error) {
     var self = this;
 
-    self.code = CommandError.ERROR_CODES[error_key].code;
-    self.message = CommandError.ERROR_CODES[error_key].message;
+    self.code = error.code;
+    self.message = error.message;
 }
 
 CommandError.ERROR_CODES = {
