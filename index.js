@@ -31,6 +31,7 @@ app.post('/webhook', (request, response) => {
         if (event.message && event.message.text)
             text = event.message.text;
 
+        console.log("pass", "============================");
         MessageSender.simple_message(sender_id, text);
     }
 
