@@ -3,7 +3,7 @@ var express = require("express");
 
 var app = express();
 
-app.set("port", (process.env.PORT || 5000));
+app.set("port", (process.env.PORT));
 
 app.get("/", function(request, response) {
     response.send("Hello");
@@ -12,5 +12,3 @@ app.get("/", function(request, response) {
 app.listen(app.get("port"), function() {
     console.log("Smough is now running at port: ", app.get("port"));
 });
-
-
