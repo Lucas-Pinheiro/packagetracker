@@ -1,8 +1,6 @@
 const request = require("request");
-const pprint = require("pretty-console.log");
+const json_print = require("printable-json");
 
-
-pprint.enable();
 
 exports.simple_message = (recipient_id, text) => {
     request(
@@ -23,9 +21,9 @@ exports.simple_message = (recipient_id, text) => {
         },
         (error, response, body) => {
             if (error)
-                console.log(`Simple message error: ${error}`);
+                console.log(`Simple message error: ${json_print.toString(error)}`);
             else if (response.body.error)
-                console.log(`Simple message error: ${response.body.error}`);
+                console.log(`Simple message error: ${json_print.toString(response.body.error)}`);
         }
     );
 };
