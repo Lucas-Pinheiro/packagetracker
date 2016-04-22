@@ -1,5 +1,6 @@
-var express = require("express");
 var body_parser = require("body-parser");
+var express = require("express");
+var request = require("request");
 
 
 var app = express();
@@ -19,19 +20,45 @@ app.get("/webhook", (request, response) => {
 });
 
 app.post('/webhook', (request, response) => {
-    messaging_events = request.body.entry[0].messaging;
+    var messaging_events = request.body.entry[0].messaging;
 
     for (var i = 0; i < messaging_events.length; i++) {
-        event = request.body.entry[0].messaging[i];
-        sender = event.sender.id;
+        var event = request.body.entry[0].messaging[i];
+        var sender = event.sender.id;
+        var text = "";
+
         if (event.message && event.message.text)
             text = event.message.text;
 
-            console.log("=================================================");
-            console.log(text);
+        console.log(text);
     }
+    response.sendStatus({
+        "recipient": {
+            "id": "USER_ID"
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "What do you want to do next?",
+                    "buttons": [
+                        {
+                            "type": "web_url",
+                            "url": "https://petersapparel.parseapp.com",
+                            "title": "Show Website"
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Start Chatting",
+                            "payload": "USER_DEFINED_PAYLOAD"
+                        }
+                    ]
+                }
+            }
+        }
+    });
 
-    response.sendStatus(200);
 });
 
 app.listen(app.get("port"), () => {
