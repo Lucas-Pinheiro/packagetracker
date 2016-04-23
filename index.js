@@ -5,6 +5,8 @@ const CommandParser = require("./core/command_parser");
 const MessageIterator = require("./core/message_iterator");
 const MessageSender = require("./core/message_sender");
 const MessageTextBuilder = require("./core/message_text_builder");
+const PostmonMediator = require("./core/postmon_mediator");
+const json_print = require("printable-json");
 
 
 var app = express();
@@ -35,17 +37,26 @@ app.post('/webhook', (request, response) => {
                 .on_help(() => {
                     MessageSender.simple_message(sender.id, MessageTextBuilder.build_help());
                 })
-                .on_cep_address(() => {
-
+                .on_cep_address((cep) => {
+                    PostmonMediator.get_cep_info(cep, (body) => {
+                        if (body) {
+                            MessageSender.simple_message(sender.id, MessageTextBuilder.build_cep(body));
+                        } else
+                            promise.fail(CommandParser.CommandError.ERROR_CODES.unknown_cep);
+                    });
                 })
-                .on_package_status(() => {
-
+                .on_package_status((package_code) => {
+                    PostmonMediator.get_package_info(package_code, (body) => {
+                        if (body) {
+                            MessageSender.simple_message(sender.id, MessageTextBuilder.build_package(body));
+                        } else
+                            promise.fail(CommandParser.CommandError.ERROR_CODES.unknown_package);
+                    });
                 })
                 .on_error((error) => {
                     MessageSender.simple_message(sender.id, MessageTextBuilder.build_error(error));
                 })
                 .resolve();
-            //
         }
     });
 

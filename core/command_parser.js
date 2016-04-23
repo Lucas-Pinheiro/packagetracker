@@ -49,6 +49,10 @@ function CommandPromise(command) {
         return self;
     };
 
+    self.fail = (error) => {
+        _actions.error(error);
+    };
+
     self.resolve = () => {
         if (self._command.error) {
             _actions.error(self._command.error);
