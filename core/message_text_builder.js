@@ -32,7 +32,7 @@ Situação: ${item.situacao}.
 
 exports.build_error = (error_object) => {
     return `
-    Erro: ${error_object.message}.
+Erro: ${error_object.message}.
 Acesse o link para instruções de utilização: https://github.com/Lucas-Pinheiro/smough"
     `;
 };

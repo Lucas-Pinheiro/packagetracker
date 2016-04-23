@@ -6,7 +6,6 @@ const MessageIterator = require("./core/message_iterator");
 const MessageSender = require("./core/message_sender");
 const MessageTextBuilder = require("./core/message_text_builder");
 const PostmonMediator = require("./core/postmon_mediator");
-const json_print = require("printable-json");
 
 
 var app = express();
