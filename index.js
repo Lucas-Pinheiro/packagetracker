@@ -33,7 +33,7 @@ app.post('/webhook', (request, response) => {
 
             promise
                 .on_help(() => {
-
+                    MessageSender.simple_message(sender.id, MessageTextBuilder.build_help());
                 })
                 .on_cep_address(() => {
 

@@ -3,7 +3,7 @@ exports.build_cep = (cep_json) => {
 };
 
 exports.build_help = () => {
-
+    return "Acesse o link para instruções de utilização: https://github.com/Lucas-Pinheiro/smough"
 };
 
 exports.build_package = (package_json) => {
