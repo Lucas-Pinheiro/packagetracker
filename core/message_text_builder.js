@@ -12,7 +12,7 @@ exports.build_package = (package_json) => {
 
 exports.build_error = (error_object) => {
     return `
-        Erro: ${error_object.message}.
-        Acesse o link para instruções de utilização: https://github.com/Lucas-Pinheiro/smough"
+    Erro: ${error_object.message}.
+    Acesse o link para instruções de utilização: https://github.com/Lucas-Pinheiro/smough"
     `;
 };
