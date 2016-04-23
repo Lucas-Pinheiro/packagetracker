@@ -13,23 +13,21 @@ exports.build_help = () => {
 };
 
 exports.build_package = (package_json) => {
-    var message_str = `
+    var messages_list = [`
 Histórico para o código de rastreamento: ${package_json.codigo}.
-`
+`]
     package_json.historico.reverse();
 
     package_json.historico.forEach((item) => {
-        message_str = `
-${message_str}
--------
+        messages_list.push(`
 Detalhes: ${item.detalhes || "nenhum"};
 Local: ${item.local};
 Data: ${item.data};
 Situação: ${item.situacao}.
-        `;
+        `);
     });
 
-    return message_str;
+    return messages_list;
 };
 
 exports.build_error = (error_object) => {
