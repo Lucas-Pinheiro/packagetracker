@@ -89,16 +89,18 @@ function Command(command_str) {
 
             self.args.cep = splitted_command[1];
             break;
+        case Command.COMMANDS.help:
+            break;
         case Command.COMMANDS.package_status:
             if (!splitted_command[1]) {
                 self.error = new CommandError(CommandError.ERROR_CODES.no_package_args);
                 break;
-            } else if (!Command.ARGS_REGEX.package.test(splitted_command[1])) {
+            } else if (!Command.ARGS_REGEX.package.test(splitted_command[1].toUpperCase())) {
                 self.error = new CommandError(CommandError.ERROR_CODES.unknown_package_format);
                 break;
             }
 
-            self.args.package_code = splitted_command[1];
+            self.args.package_code = splitted_command[1].toUpperCase();
             break;
         default:
             self.error = new CommandError(CommandError.ERROR_CODES.unknown_command);
