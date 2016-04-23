@@ -48,11 +48,7 @@ app.post('/webhook', (request, response) => {
                 .on_package_status((package_code) => {
                     PostmonMediator.get_package_info(package_code, (body) => {
                         if (body) {
-                            MessageTextBuilder
-                                .build_package(body)
-                                .forEach((msg) => {
-                                    MessageSender.simple_message(sender.id, msg);
-                                });
+                            MessageSender.ordered_messages(sender.id, MessageTextBuilder.build_package(body));
                         } else
                             promise.fail(CommandParser.CommandError.ERROR_CODES.unknown_package);
                     });
