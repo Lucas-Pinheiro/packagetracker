@@ -50,8 +50,8 @@ function CommandPromise(command) {
     };
 
     self.resolve = () => {
-        if (self.command.error) {
-            _actions.error(self.command.error);
+        if (self._command.error) {
+            _actions.error(self._command.error);
             return;
         }
 
