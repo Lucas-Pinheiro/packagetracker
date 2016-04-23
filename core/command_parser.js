@@ -3,13 +3,13 @@ function CommandPromise(command) {
 
     var _actions = {
         "cep_address": () => {
-            console.log("/cep_address command executed");
+            console.log(`${Command.COMMANDS.cep_address} command executed`);
         },
         "package_status": () => {
-            console.log("/package_status command executed");
+            console.log(`${Command.COMMANDS.package_status} command executed`);
         },
         "help": () => {
-            console.log("/help command executed");
+            console.log(`${Command.COMMANDS.help} command executed`);
         },
         "error": (error) => {
             console.log(`code: ${error.code}; message: ${error.message}`);
@@ -109,9 +109,9 @@ function Command(command_str) {
 }
 
 Command.COMMANDS = {
-    "cep_address": "/cep_address",
+    "cep_address": "/cep",
     "help": "/help",
-    "package_status": "/package_status"
+    "package_status": "/rastrear"
 };
 
 Command.ARGS_REGEX = {
@@ -149,11 +149,11 @@ CommandError.ERROR_CODES = {
     },
     "no_cep_args": {
         "code": "6",
-        "message": "Você enviou o comando '/cep_address' sem o número do CEP"
+        "message": `Você enviou o comando '${Command.COMMANDS.cep_address}' sem o número do CEP`
     },
     "no_package_args": {
         "code": "7",
-        "message": "Você enviou o comando '/package_status' sem o código de rastreamento"
+        "message": `Você enviou o comando '${Command.COMMANDS.package_status}' sem o código de rastreamento`
     }
 };
 

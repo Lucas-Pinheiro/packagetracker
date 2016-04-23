@@ -8,6 +8,6 @@ Para utilizar o bot basta acessar [esta](https://www.facebook.com/PackageTrack) 
 
 ## Comandos
 
-- /package_status [código de rastreamento]: retorna uma mensagem com o status do pedido em questão. Ex.: /package_status PJ861677375BR;
-- /cep_address [CEP da rua]: retorna uma mensagem com o endereço do CEP em questão. Ex.: /cep_address 89228150;
+- /cep [CEP da rua]: retorna uma mensagem com o endereço do CEP em questão. Ex.: /cep 89228150;
 - /help: retorna uma mensagem com um link para as instruções de utilização.
+- /rastrear [código de rastreamento]: retorna uma mensagem com o status do pedido em questão. Ex.: /rastrear PJ861677375BR;
