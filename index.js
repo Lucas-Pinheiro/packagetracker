@@ -4,6 +4,7 @@ const express = require("express");
 const CommandParser = require("./core/command_parser");
 const MessageIterator = require("./core/message_iterator");
 const MessageSender = require("./core/message_sender");
+const MessageTextBuilder = require("./core/message_text_builder");
 
 
 var app = express();
@@ -29,8 +30,22 @@ app.post('/webhook', (request, response) => {
     iterator.each_message((sender, message) => {
         if (message && message.text) {
             promise = new CommandParser.CommandPromise(message.text);
-            promise.resolve();
-            // MessageSender.simple_message(sender.id, message.text);
+
+            promise
+                .on_help(() => {
+
+                })
+                .on_cep_address(() => {
+
+                })
+                .on_package_status(() => {
+
+                })
+                .on_error((error) => {
+                    MessageSender.simple_message(sender.id, MessageTextBuilder.build_error(error));
+                })
+                .resolve();
+            //
         }
     });
 
