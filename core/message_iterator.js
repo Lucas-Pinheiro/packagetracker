@@ -1,5 +1,3 @@
-exports.Iterator = Iterator;
-
 function Iterator(messages) {
     var self = this;
 
@@ -15,3 +13,6 @@ function Iterator(messages) {
         }
     };
 }
+
+
+exports.Iterator = Iterator;

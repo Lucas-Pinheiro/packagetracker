@@ -1,10 +1,10 @@
-const request = require("request");
 const json_print = require("printable-json");
+const request = require("request");
 
 
 const API_DOMAIN = "http://api.postmon.com.br";
 
-exports.get_cep_info = (cep, success) => {
+function get_cep_info(cep, success) {
     var url = `${API_DOMAIN}/v1/cep/${cep}`;
 
     request(
@@ -25,9 +25,9 @@ exports.get_cep_info = (cep, success) => {
             }
         }
     );
-};
+}
 
-exports.get_package_info = (package_code, success) => {
+function get_package_info(package_code, success) {
     var url = `${API_DOMAIN}/v1/rastreio/ect/${package_code}`;
 
     request(
@@ -49,3 +49,7 @@ exports.get_package_info = (package_code, success) => {
         }
     );
 }
+
+
+exports.get_cep_info = get_cep_info;
+exports.get_package_info = get_package_info;

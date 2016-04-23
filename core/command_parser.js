@@ -1,6 +1,3 @@
-exports.CommandPromise = CommandPromise;
-exports.CommandError = CommandError;
-
 function CommandPromise(command) {
     var self = this;
 
@@ -159,3 +156,7 @@ CommandError.ERROR_CODES = {
         "message": "Você enviou o comando '/package_status' sem o código de rastreamento"
     }
 };
+
+
+exports.CommandPromise = CommandPromise;
+exports.CommandError = CommandError;
