@@ -40,11 +40,7 @@ app.post('/webhook', (request, response) => {
                 .on_cep_address((cep) => {
                     PostmonMediator.get_cep_info(cep, (body) => {
                         if (body) {
-                            MessageTextBuilder
-                                .build_cep(body)
-                                .forEach((msg) => {
-                                    MessageSender.simple_message(sender.id, msg);
-                                });
+                            MessageSender.simple_message(sender.id, MessageTextBuilder.build_cep(body));
                         } else
                             promise.fail(CommandParser.CommandError.ERROR_CODES.unknown_cep);
                     });
@@ -52,7 +48,11 @@ app.post('/webhook', (request, response) => {
                 .on_package_status((package_code) => {
                     PostmonMediator.get_package_info(package_code, (body) => {
                         if (body) {
-                            MessageSender.simple_message(sender.id, MessageTextBuilder.build_package(body));
+                            MessageTextBuilder
+                                .build_package(body)
+                                .forEach((msg) => {
+                                    MessageSender.simple_message(sender.id, msg);
+                                });
                         } else
                             promise.fail(CommandParser.CommandError.ERROR_CODES.unknown_package);
                     });
