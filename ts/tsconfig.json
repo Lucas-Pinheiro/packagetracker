@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "sourceMap": false,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "outDir": "../"
+    },
+    "files": [
+        "index.ts",
+        "core/command_parser.ts",
+        "core/message_iterator.ts",
+        "core/message_sender.ts",
+        "core/message_text_builder.ts",
+        "core/postmon_mediator.ts"
+    ]
+}

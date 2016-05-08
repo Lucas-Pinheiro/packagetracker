@@ -20,5 +20,9 @@
     "url": "https://github.com/Lucas-Pinheiro/smough"
   },
   "keywords": [],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^1.8.10",
+    "typings": "^0.8.1"
+  }
 }

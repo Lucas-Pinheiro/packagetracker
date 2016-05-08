@@ -1,18 +1,14 @@
-function Iterator(messages) {
-    var self = this;
-
-    self._messages = messages;
-
-    self.each_message = (callback) => {
-        for (var i = 0; i < self._messages.length; i++) {
-            callback(
-                self._messages[i].sender,
-                self._messages[i].message,
-                self._messages[i].recipient
-            );
+"use strict";
+var Iterator = (function () {
+    function Iterator(messages) {
+        this._messages = messages;
+    }
+    Iterator.prototype.each_message = function (callback) {
+        for (var i = 0; i < this._messages.length; i++) {
+            callback(this._messages[i].sender, this._messages[i].message, this._messages[i].recipient);
         }
     };
-}
-
-
+    ;
+    return Iterator;
+}());
 exports.Iterator = Iterator;
